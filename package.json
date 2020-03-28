@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "node-red": {
     "nodes": {
+      "lower-case": "feathers.js",
       "feathers-find": "feathers.js",
       "feathers-create": "feathers.js",
       "feathers-patch": "feathers.js",

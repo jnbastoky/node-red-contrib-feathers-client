@@ -13,7 +13,7 @@ module.exports = function(RED) {
         //console.log(n);
         this.feathconf = n.feathconf;
         this.service = n.service;
-        this.limit = n.service;
+        this.limit = n.limit;
         this.query = n.query;
         this.feathersConfig = RED.nodes.getNode(this.feathconf);
 
@@ -39,7 +39,7 @@ module.exports = function(RED) {
             });
 
             this.on('input', function(msg) {
-                var query,service;
+                var query,service,limit;
                     //console.log(node.feathersConfig.client);
                     query = msg.hasOwnProperty('query') ? msg.query : node.query;
                 if (!query) {
@@ -47,6 +47,7 @@ module.exports = function(RED) {
                     //node.error(RED._("influxdb.errors.noquery"), msg);
                     //return;
                 }
+                query['$limit'] = node.limit;
                 service = msg.hasOwnProperty('service') ? msg.service : node.service;
                 if (!service) {
                     //query = {};
@@ -287,7 +288,7 @@ module.exports = function(RED) {
                     //     console.log('every 2 minutes');
                     //     processAuth();
                     //
-                    // }, 1000 * 60 * 2);
+                    // }, 1000 * 60 * 60 * 23);
 
                 });
 
