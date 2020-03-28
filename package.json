@@ -1,0 +1,21 @@
+{
+  "name": "node-red-contrib-feathers-client",
+  "version": "0.0.1",
+  "node-red": {
+    "nodes": {
+      "feathers-find": "feathers.js",
+      "feathers-create": "feathers.js",
+      "feathers-patch": "feathers.js",
+      "feathers-subscribe": "feathers.js"
+    }
+  },
+  "dependencies": {
+    "@feathersjs/authentication-client": "^4.5.2",
+    "@feathersjs/feathers": "^4.5.2",
+    "@feathersjs/socketio-client": "^4.5.2",
+    "jwt-decode": "^2.2.0",
+    "long-timeout": "^0.1.1",
+    "moment": "^2.24.0",
+    "socket.io-client": "^2.3.0"
+  }
+}

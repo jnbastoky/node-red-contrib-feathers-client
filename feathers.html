@@ -1,0 +1,210 @@
+<script type="text/html" data-template-name="feathersconfig">
+    <div class="form-row">
+        <label for="node-config-input-host"><i class="fa fa-globe"></i> Host</label>
+        <input type="text" id="node-config-input-host">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-port"><i class="fa fa-random"></i> Port</label>
+        <input type="text" id="node-config-input-port">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-user"><i class="fa fa-user"></i> User</label>
+        <input type="text" id="node-config-input-user">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-password"><i class="fa fa-lock"></i> Password</label>
+        <input type="password" id="node-config-input-password">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-config-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('feathersconfig',{
+        category: 'config',
+        defaults: {
+            name: {value:""},
+            host: {value:"localhost",required:true},
+            port: {value:"3030",required:true},
+            //user: {value:"",required:true},
+            //pass: {value:"",required:true},
+        },
+        credentials: {
+            user: {type: "text"},
+            password: {type: "password"}
+        },
+        label: function() {
+            return this.name || this.host;
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('feathers-find',{
+        category: 'feathers',
+        color: '#D5D4D4',
+        defaults: {
+            feathconf: {type:"feathersconfig",required:true},
+            name: {value:""},
+            service: {value:"assets"},
+            limit: {value:"100"},
+            query: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"feathers-find";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="feathers-find">
+    <div class="form-row">
+        <label for="node-input-feathconf"><i class="fa fa-database"></i> Feathers Config</label>
+        <input type="text" id="node-input-feathconf">
+    </div>
+    <div class="form-row">
+        <label for="node-input-service"><i class="icon-tag"></i> Service</label>
+        <input type="text" id="node-input-service" placeholder="">
+    </div>
+    <div class="form-row">
+        <label for="node-input-query"><i class="icon-tag"></i> Query</label>
+        <input type="text" id="node-input-query" placeholder="">
+    </div>
+    <div class="form-row">
+        <label for="node-input-limit"><i class="icon-tag"></i> Limit</label>
+        <input type="text" id="node-input-limit" placeholder="">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="feathers-find">
+    <p>A node that performs a find on a feathers server</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('feathers-create',{
+        category: 'feathers',
+        color: '#D5D4D4',
+        defaults: {
+            feathconf: {type:"feathersconfig",required:true},
+            name: {value:""},
+            service: {value:"assets"}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"feathers-create";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="feathers-create">
+    <div class="form-row">
+        <label for="node-input-feathconf"><i class="fa fa-database"></i> Feathers Config</label>
+        <input type="text" id="node-input-feathconf">
+    </div>
+    <div class="form-row">
+        <label for="node-input-service"><i class="icon-tag"></i> Service</label>
+        <input type="text" id="node-input-service" placeholder="">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="feathers-create">
+    <p>A node that performs a find on a feathers server</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('feathers-patch',{
+        category: 'feathers',
+        color: '#D5D4D4',
+        defaults: {
+            feathconf: {type:"feathersconfig",required:true},
+            name: {value:""},
+            service: {value:"assets"},
+            id: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"feathers-patch";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="feathers-patch">
+    <div class="form-row">
+        <label for="node-input-feathconf"><i class="fa fa-database"></i> Feathers Config</label>
+        <input type="text" id="node-input-feathconf">
+    </div>
+    <div class="form-row">
+        <label for="node-input-service"><i class="icon-tag"></i> Service</label>
+        <input type="text" id="node-input-service" placeholder="">
+    </div>
+    <div class="form-row">
+        <label for="node-input-id"><i class="icon-tag"></i> ID</label>
+        <input type="text" id="node-input-id" placeholder="">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="feathers-patch">
+    <p>A node that performs a find on a feathers server</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('feathers-subscribe',{
+        category: 'feathers',
+        color: '#D5D4D4',
+        defaults: {
+            feathconf: {type:"feathersconfig",required:true},
+            name: {value:""},
+            service: {value:"",required:true},
+            method: {value:"",required:true}
+        },
+        inputs:0,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"feathers-subscribe";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="feathers-subscribe">
+    <div class="form-row">
+        <label for="node-input-feathconf"><i class="fa fa-database"></i> Feathers Config</label>
+        <input type="text" id="node-input-feathconf">
+    </div>
+    <div class="form-row">
+        <label for="node-input-service"><i class="icon-tag"></i> Service</label>
+        <input type="text" id="node-input-service" placeholder="">
+    </div>
+    <div class="form-row">
+        <label for="node-input-method"><i class="icon-tag"></i> Method</label>
+        <input type="text" id="node-input-method" placeholder="">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="feathers-subscribe">
+    <p>A node that performs a find on a feathers server</p>
+</script>
