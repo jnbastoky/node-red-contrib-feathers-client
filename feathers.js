@@ -153,6 +153,7 @@ module.exports = function(RED) {
 
             this.on('input', function(msg) {
                 var query,service, id;
+                id = msg.hasOwnProperty('id') ? msg.id : node.id;   // was missing
                 service = msg.hasOwnProperty('service') ? msg.service : node.service;
                 if (!service) {
                     //query = {};
@@ -194,13 +195,15 @@ module.exports = function(RED) {
             var busy = false;
             var status = {};
             node.feathersConfig.on("state", function (info) {
+                // console.log("on state: ", info)
                 if (info === "connecting") {
                     node.status({fill: "grey", shape: "ring", text: info});
                 } else if (info === "connected") {
                     node.status({fill: "green", shape: "dot", text: info});
                     var nservice = node.feathersConfig.client.service(node.service);
+                    // console.log(node.service, node.method);
                     nservice.on(node.method,(message)=>{
-                        console.log(message);
+                        // console.log(message);
                         var msg = {
                             topic: `${node.service}-${node.method}`,
                             payload: message
@@ -279,6 +282,7 @@ module.exports = function(RED) {
                 node.client.on('logout', (reason)=>{
                     console.log('*****auto logout');
                     // lt.clearInterval(interval);
+                    node.connected = false;
                 });
 
                 node.client.on('login', (reason)=>{
