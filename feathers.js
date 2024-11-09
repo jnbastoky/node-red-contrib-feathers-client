@@ -166,7 +166,7 @@ module.exports = function(RED) {
                     return;
                 }
                 node.feathersConfig.client.service(service).patch(id,msg.payload).then((res)=>{
-                    msg.payload = res.data;
+                    msg.payload = res;
                     node.send(msg);
                 }).catch((err)=>{
                     node.error(err);
